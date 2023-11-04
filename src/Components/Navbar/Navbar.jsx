@@ -9,7 +9,7 @@ const navLinks = (
           isPending
             ? "pending"
             : isActive
-            ? "bg-white text-black px-3 py-2"
+            ? "bg-white text-black px-3 py-2 rounded-full"
             : "py-2 text-white"
         }
       >
@@ -21,7 +21,7 @@ const navLinks = (
           isPending
             ? "pending"
             : isActive
-            ? "bg-white text-black px-3 py-2"
+            ? "bg-white text-black px-3 py-2 rounded-full"
             : "py-2 text-white"
         }
       >
@@ -33,19 +33,19 @@ const navLinks = (
           isPending
             ? "pending"
             : isActive
-            ? "bg-white text-black px-3 py-2"
+            ? "bg-white text-black px-3 py-2 rounded-full"
             : "py-2 text-white"
         }
       >
         Add Foods
       </NavLink>
       <NavLink
-        to={"/manage-product"}
+        to={"/manage-food"}
         className={({ isActive, isPending }) =>
           isPending
             ? "pending"
             : isActive
-            ? "bg-white text-black px-3 py-2"
+            ? "bg-white text-black px-3 py-2 rounded-full"
             : "py-2 text-white"
         }
       >
@@ -57,7 +57,7 @@ const navLinks = (
           isPending
             ? "pending"
             : isActive
-            ? "bg-white text-black px-3 py-2"
+            ? "bg-white text-black px-3 py-2 rounded-full"
             : "py-2 text-white"
         }
       >
@@ -69,7 +69,7 @@ const navLinks = (
           isPending
             ? "pending"
             : isActive
-            ? "bg-white text-black px-3 py-2"
+            ? "bg-white text-black px-3 py-2 rounded-full"
             : "py-2 text-white"
         }
       >
@@ -81,7 +81,7 @@ const navLinks = (
 
 const Navbar = () => {
   return (
-    <div className=" bg-[#00C1D5]">
+    <div className=" bg-sky-700">
       <div className="navbar lg:w-[80%] lg:mx-auto">
         <div className="flex-none lg:hidden">
           <label
