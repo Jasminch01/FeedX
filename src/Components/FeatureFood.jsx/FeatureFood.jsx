@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 const FeatureFood = ({ food }) => {
   const {
-    id,
+    _id,
     foodImage,
     foodName,
     donator,
@@ -11,7 +11,7 @@ const FeatureFood = ({ food }) => {
     additionalNotes,
   } = food;
   return (
-    <div className="flex gap-5 items-center">
+    <div className="flex gap-5 items-center shadow-lg">
       <div>
         <img src={foodImage} alt="" className="w-60 h-60 rounded-md" />
       </div>
