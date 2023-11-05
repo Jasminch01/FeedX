@@ -18,7 +18,7 @@ const MainLayout = ({ children }) => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="menu p-4 w-80 min-h-full bg-base-200">
+        <div className="menu p-4 md:w-80 min-h-full bg-base-200">
             {/* sidebar */}
           <Sidebar></Sidebar>
         </div>
