@@ -6,7 +6,7 @@ const Home = () => {
             <Helmet>
                 <title>FeedX | A Community Food Sharing and Surplus Reduction Platform</title>
             </Helmet>
-            <p>Home</p>
+            <p>home</p>
         </div>
     );
 };

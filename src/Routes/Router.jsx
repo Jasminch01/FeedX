@@ -6,6 +6,8 @@ import AddFoods from "../Pages/AddFoods";
 import ManageFood from "../Pages/ManageFood";
 import MyFoodRequest from "../Pages/MyFoodRequest";
 import Login from "../Pages/Login";
+import PrivetRoute from "./PrivetRoute";
+import Register from "../Pages/Register";
 
 const Router = createBrowserRouter([
   {
@@ -22,15 +24,27 @@ const Router = createBrowserRouter([
       },
       {
         path: "/add-foods",
-        element: <AddFoods></AddFoods>,
+        element: (
+          <PrivetRoute>
+            <AddFoods></AddFoods>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/manage-food",
-        element: <ManageFood></ManageFood>,
+        element: (
+          <PrivetRoute>
+            <ManageFood></ManageFood>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/my-food-request",
-        element: <MyFoodRequest></MyFoodRequest>,
+        element: (
+          <PrivetRoute>
+            <MyFoodRequest></MyFoodRequest>
+          </PrivetRoute>
+        ),
       },
     ],
   },
@@ -38,5 +52,9 @@ const Router = createBrowserRouter([
     path: "/login",
     element: <Login></Login>,
   },
+  {
+    path : '/register',
+    element : <Register></Register>
+  }
 ]);
 export default Router;
