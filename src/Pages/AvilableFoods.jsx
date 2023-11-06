@@ -17,6 +17,12 @@ const AvilableFoods = () => {
     );
     setFoods(filter);
   };
+
+  const sortHandler = ()=> {
+    const sortFoods =  [...foods].sort((a, b) =>
+    new Date(a.expiredDateTime) - new Date(b.expiredDateTime))
+    setFoods(sortFoods)
+  }
   return (
     <div>
       <Helmet>
@@ -45,7 +51,7 @@ const AvilableFoods = () => {
       <div className="my-20">
         <p className="my-5 font-bold text-center text-3xl">Avilable Foods</p>
         <div className="flex justify-end mb-5">
-          <div className="flex cursor-pointer">
+          <div onClick={sortHandler} className="flex cursor-pointer p-2 bg-sky-700 text-white rounded">
             <button>sort by expire date</button>
             <PiSortDescendingDuotone className="text-2xl"></PiSortDescendingDuotone>
           </div>
