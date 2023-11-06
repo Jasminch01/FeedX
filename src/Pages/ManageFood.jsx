@@ -4,9 +4,9 @@ const ManageFood = () => {
     return (
         <div>
             <Helmet>
-                <title>FeedX | Manage Food</title>
+                <title>FeedX | Manage my food</title>
             </Helmet>
-            <p>Manage Food</p>
+            
         </div>
     );
 };
