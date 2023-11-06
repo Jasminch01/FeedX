@@ -20,7 +20,7 @@ const Router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader : () => fetch('http://localhost:5000/foods')
+        loader : () => fetch('http://localhost:5000/featured-foods')
       },
       {
         path: "/avilable-foods",
