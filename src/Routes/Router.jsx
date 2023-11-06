@@ -55,7 +55,7 @@ const Router = createBrowserRouter([
         path :  '/Food-details/:id',
         element : <FoodDetails></FoodDetails>,
         loader : ({params})=> fetch(`http://localhost:5000/foods/${params.id}`)
-      }
+      },
     ],
   },
   {
@@ -65,6 +65,6 @@ const Router = createBrowserRouter([
   {
     path : '/register',
     element : <Register></Register>
-  }
+  },
 ]);
 export default Router;

@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import Modal from "../Modal/Modal";
+import { Helmet } from "react-helmet";
 
 const FoodDetails = () => {
   const food = useLoaderData();
@@ -15,6 +16,9 @@ const FoodDetails = () => {
 
   return (
     <div className="my-20 md:flex items-center justify-around gap-10">
+      <Helmet>
+        <title>FeedX | food details/{foodName}</title>
+      </Helmet>
       <div>
         <img
           src={foodImage}

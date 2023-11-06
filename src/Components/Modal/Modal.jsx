@@ -1,10 +1,11 @@
 import moment from "moment/moment";
 import UseAuth from "../../Hooks/UseAuth";
 import PropsTypes from "prop-types";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Modal = ({ food }) => {
   const { user } = UseAuth();
-  console.log(user);
   const {
     _id,
     foodImage,
@@ -14,15 +15,54 @@ const Modal = ({ food }) => {
     expiredDateTime,
     additionalNotes,
   } = food;
-
   const currentTime = moment().format(`h:mm A`);
-  console.log(currentTime);
+
+  const requestHandler = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const donationMoney = form.donation.value;
+    const reqestData = {
+      foodImage,
+      foodName,
+      donatorName: donator.name,
+      donatorImage: donator.image,
+      currentTime,
+      pickupLocation,
+      expiredDateTime,
+      additionalNotes,
+      donationMoney,
+    };
+
+    try {
+      await axios
+        .post("http://localhost:5000/requested-foods", reqestData)
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            Swal.fire({
+              title: "Successfull!",
+              text: "Requested Successfull!",
+              icon: "success",
+              customClass : {
+                container : 'z-50'
+              }
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="">
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box relative">
           <div className="w-full">
-            <form className="card-body">
+            <form onSubmit={requestHandler} className="card-body">
               <p className="font-bold text-xl text-center">{foodName}</p>
               <div className="flex justify-center">
                 <img src={foodImage} alt="" className="w-60 h-60 rounded" />
@@ -129,7 +169,7 @@ const Modal = ({ food }) => {
                 </label>
                 <textarea
                   type="number"
-                  name="donation"
+                  name="additionalNotes"
                   defaultValue={additionalNotes}
                   className="input input-bordered"
                 />
