@@ -8,7 +8,6 @@ import { CgUserAdd } from "react-icons/cg";
 
 const Home = () => {
   const foods = useLoaderData();
-  console.log(foods);
   return (
     <div>
       <Helmet>
@@ -21,7 +20,7 @@ const Home = () => {
       </div>
       <div className="my-20">
         <p className="my-5 font-bold text-center text-3xl">Featured Foods</p>
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
           {foods.map((food) => (
             <FeatureFood key={food._id} food={food}></FeatureFood>
           ))}

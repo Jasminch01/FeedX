@@ -8,11 +8,14 @@ import MyFoodRequest from "../Pages/MyFoodRequest";
 import Login from "../Pages/Login";
 import PrivetRoute from "./PrivetRoute";
 import Register from "../Pages/Register";
+import ErrorPage from "../Pages/ErrorPage";
+import FoodDetails from "../Components/FoodDetails/FoodDetails";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
+    errorElement : <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
@@ -22,6 +25,7 @@ const Router = createBrowserRouter([
       {
         path: "/avilable-foods",
         element: <AvilableFoods></AvilableFoods>,
+        loader : () => fetch('http://localhost:5000/foods')
       },
       {
         path: "/add-foods",
@@ -47,6 +51,11 @@ const Router = createBrowserRouter([
           </PrivetRoute>
         ),
       },
+      {
+        path :  '/Food-details/:id',
+        element : <FoodDetails></FoodDetails>,
+        loader : ({params})=> fetch(`http://localhost:5000/foods/${params.id}`)
+      }
     ],
   },
   {
