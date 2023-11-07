@@ -2,7 +2,7 @@ import moment from "moment/moment";
 import UseAuth from "../../Hooks/UseAuth";
 import PropsTypes from "prop-types";
 import axios from "axios";
-import Swal from "sweetalert2";
+import toast, {  Toaster } from "react-hot-toast";
 
 const Modal = ({ food }) => {
   const { user } = UseAuth();
@@ -39,14 +39,7 @@ const Modal = ({ food }) => {
         .then((res) => {
           console.log(res.data);
           if (res.data.insertedId) {
-            Swal.fire({
-              title: "Successfull!",
-              text: "Requested Successfull!",
-              icon: "success",
-              customClass : {
-                container : 'z-50'
-              }
-            });
+            toast.success(' Request Successfull')
           }
         })
         .catch((err) => {
@@ -187,6 +180,7 @@ const Modal = ({ food }) => {
             </div>
           </div>
         </div>
+        <Toaster></Toaster>
       </dialog>
     </div>
   );

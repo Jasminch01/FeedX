@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import RequestFood from "../Components/RequestFood/RequestFood";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
@@ -18,16 +18,16 @@ const MyFoodRequest = () => {
     try {
       await axios
         .delete(`http://localhost:5000/requested-foods/${_id}`)
-        .then((res) => {
-          console.log(res.data);
-          if (res.data.deletedCount > 0) {
-            toast.success("successfully remove form request");
-            refetch();
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.deletedCount > 0) {
+          refetch();
+          toast.success('Successfully Cancelled Request')
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     } catch (error) {
       console.log(error);
     }
@@ -52,9 +52,11 @@ const MyFoodRequest = () => {
             key={food._id}
             food={food}
             cencelRequest={cencelRequest}
+            data={data}
           ></RequestFood>
         ))}
       </div>
+      <Toaster></Toaster>
     </div>
   );
 };

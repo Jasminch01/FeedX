@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 import { RiDeleteBin6Fill } from "react-icons/ri";
-const RequestFood = ({ food, cencelRequest }) => {
+const RequestFood = ({ food, cencelRequest, data }) => {
   const {
     _id,
     foodImage,
@@ -13,16 +13,19 @@ const RequestFood = ({ food, cencelRequest }) => {
     donationMoney,
   } = food;
 
+  console.log(data)
+
   return (
     <div>
-      {!RequestFood ? (
-        <div className="flex justify-center items-center">
+      {data.length < 0 ? (
+        <div className="flex justify-center">
           <div>
+            <p>No data</p>
             <img src="https://i.ibb.co/sPs7c3b/5928292-3024051.jpg" alt="" />
           </div>
         </div>
       ) : (
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 ">
           <div>
             <img src={foodImage} alt="" className="w-60 h-60 rounded" />
           </div>
@@ -52,5 +55,6 @@ const RequestFood = ({ food, cencelRequest }) => {
 RequestFood.propTypes = {
   food: PropTypes.object,
   cencelRequest: PropTypes.func,
+  data : PropTypes.array,
 };
 export default RequestFood;
