@@ -16,8 +16,8 @@ export const AuthProvider = createContext();
 const googleProvider = new GoogleAuthProvider();
 
 const AuthContext = ({ children }) => {
-    const [user, setUser] = useState({})
-    const [loading, setLoading] = useState('');
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState("");
 
   const signInGoogle = () => {
     setLoading(true);
@@ -30,21 +30,21 @@ const AuthContext = ({ children }) => {
   };
 
   const signInEmailPass = (email, password) => {
-    setLoading(true)
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   useEffect(() => {
     const unSubsCribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-      setLoading(false)
+      setLoading(false);
     });
     return () => {
       unSubsCribe();
     };
   }, []);
-  
+
   const logOut = () => {
-    setLoading(true)
+    setLoading(true);
     return signOut(auth);
   };
   const updateUserProfile = (createdUser, name, photoURL) => {
@@ -55,7 +55,6 @@ const AuthContext = ({ children }) => {
         : "https://example.com/jane-q-user/profile.jpg",
     });
   };
-  
 
   const authValue = {
     signInGoogle,
@@ -65,14 +64,11 @@ const AuthContext = ({ children }) => {
     updateUserProfile,
     signInEmailPass,
     user,
-    logOut
+    logOut,
   };
 
-
   return (
-    <AuthProvider.Provider value={authValue}>
-      {children}
-    </AuthProvider.Provider>
+    <AuthProvider.Provider value={authValue}>{children}</AuthProvider.Provider>
   );
 };
 

@@ -21,8 +21,8 @@ const FeatureFood = ({ food }) => {
         <p>Expire Date: {expiredDateTime}</p>
         <p>PickUp Address : {pickupLocation}</p>
         <div className="flex  items-center gap-3">
-            <p>Donner : {donator.name}</p>
-            <img src={donator.image} alt="" className="w-10 rounded-full ring-sky-700 ring-2 outline-offset-1" />
+            <p>Donner : {donator?.name}</p>
+            <img src={donator?.image} alt="" className="w-10 rounded-full ring-sky-700 ring-2 outline-offset-1" />
         </div>
         <div>
           <Link to={`/Food-details/${_id}`}>

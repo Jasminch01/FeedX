@@ -15,17 +15,17 @@ const Router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
-    errorElement : <ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
         element: <Home></Home>,
-        loader : () => fetch('http://localhost:5000/featured-foods')
+        loader: () => fetch("http://localhost:5000/featured-foods"),
       },
       {
         path: "/avilable-foods",
         element: <AvilableFoods></AvilableFoods>,
-        loader : () => fetch('http://localhost:5000/foods')
+        loader: () => fetch("http://localhost:5000/foods"),
       },
       {
         path: "/add-foods",
@@ -42,6 +42,7 @@ const Router = createBrowserRouter([
             <ManageFood></ManageFood>
           </PrivetRoute>
         ),
+        loader: () => fetch("http://localhost:5000/foods"),
       },
       {
         path: "/my-food-request",
@@ -52,9 +53,10 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path :  '/Food-details/:id',
-        element : <FoodDetails></FoodDetails>,
-        loader : ({params})=> fetch(`http://localhost:5000/foods/${params.id}`)
+        path: "/Food-details/:id",
+        element: <FoodDetails></FoodDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/foods/${params.id}`),
       },
     ],
   },
@@ -63,8 +65,8 @@ const Router = createBrowserRouter([
     element: <Login></Login>,
   },
   {
-    path : '/register',
-    element : <Register></Register>
+    path: "/register",
+    element: <Register></Register>,
   },
 ]);
 export default Router;

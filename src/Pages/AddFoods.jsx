@@ -1,10 +1,55 @@
 import { Helmet } from "react-helmet";
 import UseAuth from "../Hooks/UseAuth";
 import { BsDatabaseFillAdd } from "react-icons/bs";
+import { useState } from "react";
+import axios from "axios";
 
 const AddFoods = () => {
-  const { user } = UseAuth();
-  console.log(user);
+    const [status, setStatus] = useState('pending')
+  const { user,  } = UseAuth();
+
+  const addFood = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const foodName = form.foodName.value;
+    const foodQuantity = form.foodQuantity.value;
+    const foodImage = form.foodImage.value;
+    const pickupLocation = form.pickupLocation.value;
+    const expireDate = form.expireDate.value;
+    const additionalNotes= form.additionalNotes.value;
+    const donarImage = user.photoURL;
+    const donarName = user.displayName;
+    const donarEmail = user.email;
+    setStatus('pending')
+    
+    const foodInfo = {
+        foodName,
+        status,
+        foodQuantity,
+        expireDate,
+        foodImage,
+        pickupLocation,
+        additionalNotes,
+        donator :{
+            image : donarImage,
+            name : donarName,
+            email : donarEmail
+        }
+
+    }
+
+    console.log(foodInfo)
+
+    axios.post('http://localhost:5000/foods', foodInfo)
+    .then(res => {
+        console.log(res.data)
+    })
+    .then(err => {
+        console.log(err)
+    })
+
+    form.reset()
+  }
   return (
     <div>
       <Helmet>
@@ -14,7 +59,7 @@ const AddFoods = () => {
         <div className="hero min-h-screen ">
           <div className="text-center">
             <div className=" w-full pb-4 shadow-2xl">
-              <form className="card-body ">
+              <form onSubmit={addFood} className="card-body ">
                 <div className="flex justify-center items-center gap-3">
                   <div>
                     <p className="text-2xl font-bold text-sky-700">Add Food</p>
@@ -31,7 +76,7 @@ const AddFoods = () => {
                     <input
                       type="text"
                       name="foodName"
-                      placeholder="email"
+                      placeholder="Food name"
                       className="input input-bordered"
                       required
                     />
@@ -41,7 +86,7 @@ const AddFoods = () => {
                       <span className="label-text">Food Image</span>
                     </label>
                     <input
-                      name="text"
+                      name="foodImage"
                       placeholder="Food image url"
                       className="input input-bordered"
                       required
@@ -56,6 +101,7 @@ const AddFoods = () => {
                     <input
                       name="foodQuantity"
                       type="number"
+                      min={1}
                       placeholder="Food quantity"
                       className="input input-bordered"
                       required
@@ -127,7 +173,7 @@ const AddFoods = () => {
                   </label>
                   <textarea
                     rows={20}
-                    name="expireDate"
+                    name="additionalNotes"
                     type="text"
                     placeholder="Additional notes"
                     className="input input-bordered py-3"
