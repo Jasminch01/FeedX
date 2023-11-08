@@ -10,19 +10,6 @@ const ManageFood = () => {
     },
   });
 
-  // const ids = data.map(item => item._id);
-  // console.log(ids)
-
-  // const foodData = data.map(item => item._id)
-  // console.log(foodData)
-
-  // const deleteFood = () => {
-  //   axios.delete(`http://localhost:5000/foods/${}`)
-  //   .then(res => {
-  //     console.log(res.data)
-  //   })
-  // }
-
   if (isLoading) {
     return (
       <div className="h-screen text-center flex justify-center items-center">

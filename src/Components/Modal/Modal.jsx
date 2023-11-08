@@ -14,6 +14,7 @@ const Modal = ({ food }) => {
     pickupLocation,
     expiredDateTime,
     additionalNotes,
+    status
   } = food;
   const currentTime = moment().format(`h:mm A`);
 
@@ -31,6 +32,9 @@ const Modal = ({ food }) => {
       expiredDateTime,
       additionalNotes,
       donationMoney,
+      requestorName : user.displayName,
+      requstorEmail : user.email,
+      status
     };
 
     try {

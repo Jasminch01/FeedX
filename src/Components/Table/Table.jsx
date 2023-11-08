@@ -39,12 +39,12 @@ function Table({ data, refetch }) {
         accessor: "id",
         Cell: ({ row }) => (
           <div className="flex gap-3">
-            <Link to={`/update/:${row.original._id}`}>
+            <Link to={`/food-update/${row.original._id}`}>
               <button className="btn">
                 <MdUpdate className="text-xl text-green-400"></MdUpdate>{" "}
               </button>
             </Link>
-            <Link to={`/manage/:${row.original._id}`}>
+            <Link to={`/manage-single-food/${row.original._id}`}>
               <button className="btn">
                 <MdOutlineManageAccounts className="text-xl text-orange-400"></MdOutlineManageAccounts>{" "}
               </button>
@@ -68,7 +68,7 @@ function Table({ data, refetch }) {
       .delete(`http://localhost:5000/foods/${id}`)
       .then((res) => {
         if (res.data.deletedCount > 0) {
-          toast.success("Data deleted from database");
+          toast.error("Data deleted from database");
         }
         refetch();
       })

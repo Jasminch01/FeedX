@@ -10,6 +10,8 @@ import PrivetRoute from "./PrivetRoute";
 import Register from "../Pages/Register";
 import ErrorPage from "../Pages/ErrorPage";
 import FoodDetails from "../Components/FoodDetails/FoodDetails";
+import UpdateFood from "../Components/UpdateFood/UpdateFood";
+import ManageSingleFood from "../Components/ManageSingleFood/ManageSingleFood";
 
 const Router = createBrowserRouter([
   {
@@ -54,9 +56,29 @@ const Router = createBrowserRouter([
       },
       {
         path: "/Food-details/:id",
-        element: <FoodDetails></FoodDetails>,
+        element: (
+          <PrivetRoute>
+            <FoodDetails></FoodDetails>
+          </PrivetRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/foods/${params.id}`),
+      },
+      {
+        path: "/food-update/:id",
+        element: <PrivetRoute>
+          <UpdateFood></UpdateFood>
+        </PrivetRoute>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/foods/${params.id}`),
+      },
+      {
+        path: "/manage-single-food/:id",
+        element: <PrivetRoute>
+          <ManageSingleFood></ManageSingleFood>
+        </PrivetRoute>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/requested-foods/${params.id}`),
       },
     ],
   },

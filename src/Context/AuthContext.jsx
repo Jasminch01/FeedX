@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../Config/Firebase/firebase.config";
+import axios from "axios";
 
 export const AuthProvider = createContext();
 
@@ -34,14 +35,28 @@ const AuthContext = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
   useEffect(() => {
-    const unSubsCribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    const unSubsCribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUserEmail = {email : userEmail}
+      setUser(currentUser);
       setLoading(false);
+      if (currentUser) {
+        axios.post( `http://localhost:5000/jwt `, loggedUserEmail, {withCredentials : true})
+        .then(res => {
+          console.log(res.data)
+        })
+      }
+      else{
+        axios.post(`http://localhost:5000/logout`, loggedUserEmail, {withCredentials : true})
+        .then(res => {
+          console.log(res.data)
+        })
+      }
     });
     return () => {
       unSubsCribe();
     };
-  }, []);
+  }, [user]);
 
   const logOut = () => {
     setLoading(true);

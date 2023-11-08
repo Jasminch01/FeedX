@@ -3,53 +3,51 @@ import UseAuth from "../Hooks/UseAuth";
 import { BsDatabaseFillAdd } from "react-icons/bs";
 import { useState } from "react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate,} from "react-router-dom";
 
 const AddFoods = () => {
-    const [status, setStatus] = useState('pending')
-  const { user,  } = UseAuth();
+  const [status, setStatus] = useState("pending");
+  const { user } = UseAuth();
+  const goTo = useNavigate()
 
-  const addFood = (e) => {
+  const addFood = async (e) => {
     e.preventDefault();
     const form = e.target;
     const foodName = form.foodName.value;
     const foodQuantity = form.foodQuantity.value;
     const foodImage = form.foodImage.value;
     const pickupLocation = form.pickupLocation.value;
-    const expireDate = form.expireDate.value;
-    const additionalNotes= form.additionalNotes.value;
+    const expiredDateTime = form.expireDate.value;
+    const additionalNotes = form.additionalNotes.value;
     const donarImage = user.photoURL;
     const donarName = user.displayName;
     const donarEmail = user.email;
-    setStatus('pending')
-    
-    const foodInfo = {
-        foodName,
-        status,
-        foodQuantity,
-        expireDate,
-        foodImage,
-        pickupLocation,
-        additionalNotes,
-        donator :{
-            image : donarImage,
-            name : donarName,
-            email : donarEmail
-        }
+    setStatus("pending");
 
+    const foodInfo = {
+      foodName,
+      status,
+      foodQuantity,
+      expiredDateTime,
+      foodImage,
+      pickupLocation,
+      additionalNotes,
+      donator: {
+        image: donarImage,
+        name: donarName,
+        email: donarEmail,
+      },
+    };
+    const res = await axios.post("http://localhost:5000/foods", foodInfo);
+    const data = await res.data;
+    if (data.insertedId) {
+      toast.success("Food Added Successfull");
+      goTo('/manage-food')
     }
 
-    console.log(foodInfo)
-
-    axios.post('http://localhost:5000/foods', foodInfo)
-    .then(res => {
-        console.log(res.data)
-    })
-    .then(err => {
-        console.log(err)
-    })
-
-    form.reset()
-  }
+    form.reset();
+  };
   return (
     <div>
       <Helmet>
@@ -58,8 +56,8 @@ const AddFoods = () => {
       <div>
         <div className="hero min-h-screen ">
           <div className="text-center">
-            <div className=" w-full pb-4 shadow-2xl">
-              <form onSubmit={addFood} className="card-body ">
+            <div className=" md:w-full pb-4 shadow-2xl">
+              <form onSubmit={addFood} className="md:card-body p-4">
                 <div className="flex justify-center items-center gap-3">
                   <div>
                     <p className="text-2xl font-bold text-sky-700">Add Food</p>
@@ -68,7 +66,7 @@ const AddFoods = () => {
                     <BsDatabaseFillAdd className="text-2xl text-sky-700"></BsDatabaseFillAdd>
                   </div>
                 </div>
-                <div className="flex gap-5">
+                <div className=" md:flex gap-5">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text">FoodName</span>
@@ -93,7 +91,7 @@ const AddFoods = () => {
                     />
                   </div>
                 </div>
-                <div className="flex gap-5">
+                <div className=" md:flex gap-5">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text">Food Quantity</span>
@@ -143,7 +141,7 @@ const AddFoods = () => {
                     readOnly
                   />
                 </div>
-                <div className="flex gap-5">
+                <div className=" md:flex gap-5">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text">Donator email</span>
@@ -190,6 +188,7 @@ const AddFoods = () => {
           </div>
         </div>
       </div>
+      <Toaster></Toaster>
     </div>
   );
 };
