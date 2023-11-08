@@ -39,7 +39,7 @@ const AddFoods = () => {
         email: donarEmail,
       },
     };
-    const res = await axios.post("http://localhost:5000/foods", foodInfo);
+    const res = await axios.post("https://feed-x-server.vercel.app/foods", foodInfo);
     const data = await res.data;
     if (data.insertedId) {
       toast.success("Food Added Successfull");

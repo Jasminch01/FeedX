@@ -22,12 +22,12 @@ const Router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/featured-foods"),
+        loader: () => fetch("https://feed-x-server.vercel.app/featured-foods"),
       },
       {
         path: "/avilable-foods",
         element: <AvilableFoods></AvilableFoods>,
-        loader: () => fetch("http://localhost:5000/foods"),
+        loader: () => fetch("https://feed-x-server.vercel.app/foods"),
       },
       {
         path: "/add-foods",
@@ -44,7 +44,7 @@ const Router = createBrowserRouter([
             <ManageFood></ManageFood>
           </PrivetRoute>
         ),
-        loader: () => fetch("http://localhost:5000/foods"),
+        loader: () => fetch("https://feed-x-server.vercel.app/foods"),
       },
       {
         path: "/my-food-request",
@@ -62,7 +62,7 @@ const Router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/foods/${params.id}`),
+          fetch(`https://feed-x-server.vercel.app/foods/${params.id}`),
       },
       {
         path: "/food-update/:id",
@@ -70,7 +70,7 @@ const Router = createBrowserRouter([
           <UpdateFood></UpdateFood>
         </PrivetRoute>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/foods/${params.id}`),
+          fetch(`https://feed-x-server.vercel.app/foods/${params.id}`),
       },
       {
         path: "/manage-single-food/:id",
@@ -78,7 +78,7 @@ const Router = createBrowserRouter([
           <ManageSingleFood></ManageSingleFood>
         </PrivetRoute>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/requested-foods/${params.id}`),
+          fetch(`https://feed-x-server.vercel.app/requested-foods/${params.id}`),
       },
     ],
   },

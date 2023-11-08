@@ -39,7 +39,7 @@ const Modal = ({ food }) => {
 
     try {
       await axios
-        .post("http://localhost:5000/requested-foods", reqestData)
+        .post("https://feed-x-server.vercel.app/requested-foods", reqestData)
         .then((res) => {
           console.log(res.data);
           if (res.data.insertedId) {

@@ -65,12 +65,12 @@ function Table({ data, refetch }) {
 
   const deleteFood = (id) => {
     axios
-      .delete(`http://localhost:5000/foods/${id}`)
+      .delete(`https://feed-x-server.vercel.app/foods/${id}`)
       .then((res) => {
         if (res.data.deletedCount > 0) {
           toast.error("Data deleted from database");
         }
-        refetch();
+        refetch()
       })
       .then((error) => {
         console.log(error);

@@ -50,7 +50,7 @@ const UpdateFood = () => {
       },
     };
     const res = await axios.put(
-      `http://localhost:5000/manage/${_id}`,
+      `https://feed-x-server.vercel.app/manage/${_id}`,
       foodInfo
     );
     const data = await res.data;

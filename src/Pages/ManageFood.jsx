@@ -5,7 +5,7 @@ const ManageFood = () => {
   const { data, isLoading, refetch} = useQuery({
     queryKey: ["foodRequested"],
     queryFn: async () => {
-      const data = await fetch(`http://localhost:5000/foods`);
+      const data = await fetch(`https://feed-x-server.vercel.app/foods`);
       return await data.json();
     },
   });

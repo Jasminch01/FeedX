@@ -3,12 +3,14 @@ import RequestFood from "../Components/RequestFood/RequestFood";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import UseAuth from "../Hooks/UseAuth";
 
 const MyFoodRequest = () => {
+  const {user} = UseAuth()
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["foodRequested"],
     queryFn: async () => {
-      const data = await fetch(`http://localhost:5000/requested-foods`);
+      const data = await fetch(`https://feed-x-server.vercel.app/requested-foods?email=${user.email}`);
       return await data.json();
     },
   });
@@ -17,7 +19,7 @@ const MyFoodRequest = () => {
   const cencelRequest = async (_id) => {
     try {
       await axios
-        .delete(`http://localhost:5000/requested-foods/${_id}`)
+        .delete(`https://feed-x-server.vercel.app/requested-foods/${_id}`)
       .then((res) => {
         console.log(res.data);
         if (res.data.deletedCount > 0) {

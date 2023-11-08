@@ -41,13 +41,13 @@ const AuthContext = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
       if (currentUser) {
-        axios.post( `http://localhost:5000/jwt `, loggedUserEmail, {withCredentials : true})
+        axios.post( `https://feed-x-server.vercel.app/jwt `, loggedUserEmail, {withCredentials : true})
         .then(res => {
           console.log(res.data)
         })
       }
       else{
-        axios.post(`http://localhost:5000/logout`, loggedUserEmail, {withCredentials : true})
+        axios.post(`https://feed-x-server.vercel.app/logout`, loggedUserEmail, {withCredentials : true})
         .then(res => {
           console.log(res.data)
         })
