@@ -10,16 +10,15 @@ const MyFoodRequest = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["foodRequested"],
     queryFn: async () => {
-      const data = await fetch(`https://feed-x-server.vercel.app/requested-foods?email=${user.email}`);
+      const data = await fetch(`https://feed-x-server.vercel.app/requested-foods?email=${user.email} `, {credentials : "include"});
       return await data.json();
     },
   });
-  console.log(data);
 
   const cencelRequest = async (_id) => {
     try {
       await axios
-        .delete(`https://feed-x-server.vercel.app/requested-foods/${_id}`)
+        .delete(`https://feed-x-server.vercel.app/requested-foods/${_id}`,{withCredential : true})
       .then((res) => {
         console.log(res.data);
         if (res.data.deletedCount > 0) {

@@ -41,7 +41,7 @@ const AuthContext = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
       if (currentUser) {
-        axios.post( `https://feed-x-server.vercel.app/jwt `, loggedUserEmail, {withCredentials : true})
+        axios.post( `https://feed-x-server.vercel.app/jwt `, loggedUserEmail, {withCredentials : true} )
         .then(res => {
           console.log(res.data)
         })

@@ -22,12 +22,12 @@ const Router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: () => fetch("https://feed-x-server.vercel.app/featured-foods"),
+        loader: () => fetch("https://feed-x-server.vercel.app/featured-foods",),
       },
       {
         path: "/avilable-foods",
         element: <AvilableFoods></AvilableFoods>,
-        loader: () => fetch("https://feed-x-server.vercel.app/foods"),
+        loader: () => fetch("https://feed-x-server.vercel.app/foods",),
       },
       {
         path: "/add-foods",
@@ -44,7 +44,7 @@ const Router = createBrowserRouter([
             <ManageFood></ManageFood>
           </PrivetRoute>
         ),
-        loader: () => fetch("https://feed-x-server.vercel.app/foods"),
+        loader: () => fetch("https://feed-x-server.vercel.app/foods",),
       },
       {
         path: "/my-food-request",
@@ -78,7 +78,7 @@ const Router = createBrowserRouter([
           <ManageSingleFood></ManageSingleFood>
         </PrivetRoute>,
         loader: ({ params }) =>
-          fetch(`https://feed-x-server.vercel.app/requested-foods/${params.id}`),
+          fetch(`https://feed-x-server.vercel.app/requested-foods/${params.id}`,),
       },
     ],
   },

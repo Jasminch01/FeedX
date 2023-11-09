@@ -11,6 +11,7 @@ const RequestFood = ({ food, cencelRequest, data }) => {
     pickupLocation,
     currentTime,
     donationMoney,
+    status,
   } = food;
 
   console.log(data)
@@ -38,7 +39,7 @@ const RequestFood = ({ food, cencelRequest, data }) => {
             <p>
               Donated Amount : {donationMoney ? donationMoney : "not donated"}
             </p>
-            <p>Status : </p>
+            <p className="text-red-400">Status : {status}</p>
           </div>
           <div>
             <button onClick={()=> cencelRequest(_id)}

@@ -3,9 +3,11 @@ import UseAuth from "../../Hooks/UseAuth";
 import PropsTypes from "prop-types";
 import axios from "axios";
 import toast, {  Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Modal = ({ food }) => {
   const { user } = UseAuth();
+  const goTo = useNavigate()
   const {
     _id,
     foodImage,
@@ -43,7 +45,8 @@ const Modal = ({ food }) => {
         .then((res) => {
           console.log(res.data);
           if (res.data.insertedId) {
-            toast.success(' Request Successfull')
+            toast.success(' Request Successfull');
+            goTo('/my-food-request')
           }
         })
         .catch((err) => {

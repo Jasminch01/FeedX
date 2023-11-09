@@ -77,7 +77,11 @@ const Navbar = () => {
           <div className="dropdown relative">
             <label
               tabIndex={0}
-              className= { user ? "flex  hover:text-black hover:bg-slate-100 p-2  space-x-2 rounded-full justify-center items-center" : 'flex justify-center p-2'}
+              className={
+                user
+                  ? "flex  hover:text-black hover:bg-slate-100 p-2  space-x-2 rounded-full justify-center items-center"
+                  : "flex justify-center p-2"
+              }
             >
               <img
                 src={
@@ -131,7 +135,9 @@ const Navbar = () => {
           </label>
         </div>
         <div className="flex-1 px-2 mx-2">
-          <p className="font-bold text-4xl text-white">FeedX</p>
+          <Link to = '/'>
+            <p className="font-bold text-4xl text-white">FeedX</p>
+          </Link>
         </div>
         <div className="flex-none hidden lg:block">
           {/* Navbar menu content here */}
