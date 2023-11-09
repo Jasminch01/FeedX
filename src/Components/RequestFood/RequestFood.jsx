@@ -14,7 +14,7 @@ const RequestFood = ({ food, cencelRequest, data }) => {
     status,
   } = food;
 
-  console.log(data)
+  console.log(data);
 
   return (
     <div>
@@ -26,7 +26,7 @@ const RequestFood = ({ food, cencelRequest, data }) => {
           </div>
         </div>
       ) : (
-        <div className="flex items-center gap-5 ">
+        <div className="lg:flex items-center gap-5 ">
           <div>
             <img src={foodImage} alt="" className="w-60 h-60 rounded" />
           </div>
@@ -39,10 +39,13 @@ const RequestFood = ({ food, cencelRequest, data }) => {
             <p>
               Donated Amount : {donationMoney ? donationMoney : "not donated"}
             </p>
-            <p className="text-red-400">Status : {status}</p>
+            <p>
+              Status : <span className="text-red-400"> {status}</span>
+            </p>
           </div>
           <div>
-            <button onClick={()=> cencelRequest(_id)}
+            <button
+              onClick={() => cencelRequest(_id)}
               className="text-white p-2 rounded bg-slate-200"
             >
               <RiDeleteBin6Fill className="text-red-400 text-xl"></RiDeleteBin6Fill>{" "}
@@ -56,6 +59,6 @@ const RequestFood = ({ food, cencelRequest, data }) => {
 RequestFood.propTypes = {
   food: PropTypes.object,
   cencelRequest: PropTypes.func,
-  data : PropTypes.array,
+  data: PropTypes.array,
 };
 export default RequestFood;

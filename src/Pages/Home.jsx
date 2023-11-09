@@ -20,7 +20,7 @@ const Home = () => {
       </div>
       <div className="my-20">
         <p className="my-5 font-bold text-center text-3xl">Featured Foods</p>
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-10">
           {foods.map((food) => (
             <FeatureFood key={food._id} food={food}></FeatureFood>
           ))}
@@ -31,12 +31,12 @@ const Home = () => {
           </Link>
         </div>
       </div>
-      <div className="mb-10 p-10 bg-sky-50 rounded-lg">
+      <div className="mb-10 md:p-10 bg-sky-50 rounded-lg">
         <p className="font-bold text-3xl text-center mb-5">
           How {"it's "} Work
         </p>
-        <div className="container mx-auto p-6 grid grid-cols-4 gap-4">
-          <div className="col-span-1 flex flex-col p-5 bg-white">
+        <div className="container mx-auto lg:p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="col-span-1 flex flex-col md:p-5 p-3 bg-white">
             <div className="flex justify-center">
               <BiSolidDonateHeart className="text-4xl"></BiSolidDonateHeart>
             </div>
@@ -49,7 +49,7 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <div className="col-span-1 flex flex-col p-5 bg-white">
+          <div className="col-span-1 flex flex-col md:p-5 p-3 bg-white">
             <div className="flex justify-center">
               <BiShareAlt className="text-4xl"></BiShareAlt>
             </div>
@@ -62,7 +62,7 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <div className="col-span-1 flex flex-col p-5 bg-white">
+          <div className="col-span-1 flex flex-col md:p-5 p-3 bg-white">
             <div className="flex justify-center">
               <PiChartLineDownLight className="text-4xl"></PiChartLineDownLight>
             </div>
@@ -77,7 +77,7 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <div className="col-span-1 flex flex-col p-5 bg-white">
+          <div className="col-span-1 flex flex-col md:p-5 p-3 bg-white">
             <div className="flex justify-center p-3">
               <CgUserAdd className="text-4xl "></CgUserAdd>
             </div>
@@ -92,7 +92,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center gap-10 mb-10">
+      <div className="md:flex md:flex-row flex-col justify-center items-center gap-10 mb-10">
         <div>
           <img
             src="https://i.ibb.co/C6HDhS7/pexels-valeria-boltneva-15913452.jpg"
@@ -105,7 +105,7 @@ const Home = () => {
             Donate Your <br />
             Excess Meals
           </p>
-          <p className="text-justify">
+          <p className="md:text-justify text-center">
             Every meal you share can make a difference. <br /> Contribute to our
             mission of reducing food waste and helping those  in need. <br /> Donate
             your extra food and be a part of our compassionate community. <br />Join with Us by donating your surplus food, you help reduce waste and feed those in need.  <br />Be a part of our compassionate mission today.
