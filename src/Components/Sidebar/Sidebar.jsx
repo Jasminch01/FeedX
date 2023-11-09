@@ -1,6 +1,11 @@
-import { NavLink } from "react-router-dom";
+import {NavLink } from "react-router-dom";
+import UseAuth from "../../Hooks/UseAuth";
 
 const Sidebar = () => {
+  const { user, logOut } = UseAuth();
+  const signOutHandler = () => {
+    logOut();
+  };
   return (
     <div>
       <li>
@@ -52,16 +57,6 @@ const Sidebar = () => {
           }
         >
           My Foods Request
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={"/login"}
-          className={({ isActive }) =>
-            isActive ? " text-black px-3 py-2 rounded-full" : "py-2 "
-          }
-        >
-          Login
         </NavLink>
       </li>
     </div>

@@ -135,13 +135,59 @@ const Navbar = () => {
           </label>
         </div>
         <div className="flex-1 px-2 mx-2">
-          <Link to = '/'>
+          <Link to="/">
             <p className="font-bold text-4xl text-white">FeedX</p>
           </Link>
         </div>
         <div className="flex-none hidden lg:block">
           {/* Navbar menu content here */}
           {navLinks}
+        </div>
+        <div className="md:hidden">
+          <div className="dropdown relative">
+            <label
+              tabIndex={0}
+              className={
+                user
+                  ? "flex text-white  hover:text-black hover:bg-slate-100 p-2  space-x-2 rounded-full justify-center items-center"
+                  : "flex justify-center p-2"
+              }
+            >
+              <img
+                src={
+                  user
+                    ? user.photoURL !== null
+                      ? user.photoURL
+                      : defaultProfile
+                    : defaultProfile
+                }
+                alt=""
+                className="w-9 rounded-full ring-2 ring-green-500 outline-offset-2"
+              />
+              <p className="text-center text-sm ">
+                {user?.displayName ? user.displayName.slice(0, 8) : " "}
+              </p>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-32 absolute right-0  md:-right-24"
+            >
+              <li className="cursor-pointer p-3">
+                {!user ? (
+                  <Link to="/login" className="cursor-pointer text-black">
+                    Log in
+                  </Link>
+                ) : (
+                  <button
+                    onClick={signOutHandler}
+                    className="cursor-pointer text-black"
+                  >
+                    Log out
+                  </button>
+                )}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
